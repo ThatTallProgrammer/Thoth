@@ -1,0 +1,4 @@
+request = POST 
+url = http://localhost:8080/cci
+header = "Content-type: application/json"
+data = "{\"cciId\":\"CCI-000001\",\"status\":\"draft\",\"publishDate\":\"2009-05-13\",\"contributor\":\"DISA FSO\",\"definition\":\"A CCI\",\"type\":\"policy\",\"parameter\":\"Access Control Policy Document\",\"note\":\"A note\"}"
