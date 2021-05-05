@@ -1,9 +1,7 @@
 package com.thattallprogrammer.Thoth.cci;
 
-import com.thattallprogrammer.Thoth.cci.Cci;
-import com.thattallprogrammer.Thoth.cci.CciModelAssembler;
-import com.thattallprogrammer.Thoth.cci.CciNotFoundException;
-import com.thattallprogrammer.Thoth.cci.CciRepository;
+import com.thattallprogrammer.Thoth.cci.reference.CciReference;
+import com.thattallprogrammer.Thoth.cci.reference.CciReferenceRepository;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -18,19 +16,28 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 @RestController
 public class CciResource
 {
-  private final CciRepository repository;
+  private final CciRepository cciRepository;
+  private final CciReferenceRepository cciReferenceRepository;
   private final CciModelAssembler assembler;
 
-  public CciResource(CciRepository repository, CciModelAssembler assembler)
+  public CciResource(CciRepository repository, CciReferenceRepository cciReferenceRepository,
+                     CciModelAssembler assembler)
   {
-    this.repository = repository;
+    this.cciRepository = repository;
+    this.cciReferenceRepository = cciReferenceRepository;
     this.assembler = assembler;
+  }
+
+  private Cci save(Cci cci)
+  {
+    cci.getReferences().forEach(cciReferenceRepository::save);
+    return cciRepository.save(cci);
   }
 
   @GetMapping("/cci")
   CollectionModel<EntityModel<Cci>> all()
   {
-    List<EntityModel<Cci>> ccis = repository.findAll().stream()
+    List<EntityModel<Cci>> ccis = cciRepository.findAll().stream()
         .map(assembler::toModel)
         .collect(Collectors.toList());
 
@@ -40,7 +47,7 @@ public class CciResource
   @GetMapping("/cci/{id}")
   EntityModel<Cci> one(@PathVariable String id)
   {
-    Cci cci = repository.findById(id)
+    Cci cci = cciRepository.findById(id)
         .orElseThrow(() -> new CciNotFoundException(id));
 
     return assembler.toModel(cci);
@@ -49,7 +56,7 @@ public class CciResource
   @PostMapping("/cci")
   ResponseEntity<?> newCci(@RequestBody Cci cci)
   {
-    EntityModel<Cci> entityModel = assembler.toModel(repository.save(cci));
+    EntityModel<Cci> entityModel = assembler.toModel(save(cci));
 
     return ResponseEntity
         .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri())
@@ -59,20 +66,20 @@ public class CciResource
   @PutMapping("/cci/{id}")
   Cci replaceCci(@RequestBody Cci newCci, @PathVariable String id)
   {
-    return repository.findById(id)
+    return cciRepository.findById(id)
         .map(cci -> {
           cci.setCciId(newCci.getCciId());
-          return repository.save(cci);
+          return cciRepository.save(cci);
         })
         .orElseGet(() -> {
           newCci.setCciId(id);
-          return repository.save(newCci);
+          return cciRepository.save(newCci);
         });
   }
 
   @DeleteMapping("/cci/{id}")
   void deleteCci(@PathVariable String id)
   {
-    repository.deleteById(id);
+    cciRepository.deleteById(id);
   }
 }
