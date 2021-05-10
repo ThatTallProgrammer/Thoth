@@ -4,6 +4,8 @@ import com.thattallprogrammer.Thoth.cci.Cci;
 import com.thattallprogrammer.Thoth.cci.CciRepository;
 import com.thattallprogrammer.Thoth.cci.reference.CciReference;
 import com.thattallprogrammer.Thoth.cci.reference.CciReferenceRepository;
+import com.thattallprogrammer.Thoth.checklist.Checklist;
+import com.thattallprogrammer.Thoth.checklist.ChecklistRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -20,7 +22,11 @@ public class LoadDatabase
   private static Logger logger = LoggerFactory.getLogger(LoadDatabase.class);
 
   @Bean
-  CommandLineRunner initDatabase(CciRepository cciRepository, CciReferenceRepository cciReferenceRepository)
+  CommandLineRunner initDatabase(
+      CciRepository cciRepository,
+      CciReferenceRepository cciReferenceRepository,
+      ChecklistRepository checklistRepository
+  )
   {
     DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -64,6 +70,18 @@ public class LoadDatabase
       cci.getReferences().addAll(Arrays.asList(ref1, ref2, ref3));
 
       logger.info("Preloading " + cciRepository.save(cci));
+
+      Checklist checklist = new Checklist(
+          "Active_Directory",
+          dateFormat.parse("2009-01-20"),
+          "Active Directory Security Checklist",
+          "Checklist for securing Active Directory",
+          "",
+          "Release 3",
+          "2"
+      );
+
+      logger.info("Preloading " + checklistRepository.save(checklist));
     };
   }
 }
