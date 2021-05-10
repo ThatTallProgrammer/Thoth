@@ -1,1 +1,32 @@
-{"cciId": "CCI-001546", "status": "draft", "publishdate": "2010-05-11", "contributor": "DISA FSO", "definition": "The organization defines a frequency for reviewing and updating the access control procedures.", "type": "policy", "references": [{"index": "AC-1 b", "creator": "NIST", "title": "NIST SP 800-53", "version": "3", "location": "http://csrc.nist.gov/publications/PubsSPs.html"}, {"index": "AC-1 b 2", "creator": "NIST", "title": "NIST SP 800-53 Revision 4", "version": "4", "location": "http://csrc.nist.gov/publications/PubsSPs.html"}, {"index": "AC-1.2 (iii)", "creator": "NIST", "title": "NIST SP 800-53A", "version": "1", "location": "http://csrc.nist.gov/publications/PubsSPs.html"}]}
+{
+  "status": "draft",
+  "publishdate": "2010-05-11",
+  "contributor": "DISA FSO",
+  "definition": "The organization defines a frequency for reviewing and updating the access control procedures.",
+  "type": "policy",
+  "parameter": "",
+  "note": "",
+  "references": [
+    {
+      "index": "AC-1 b",
+      "creator": "NIST",
+      "title": "NIST SP 800-53",
+      "version": "3",
+      "location": "http://csrc.nist.gov/publications/PubsSPs.html"
+    },
+    {
+      "index": "AC-1 b 2",
+      "creator": "NIST",
+      "title": "NIST SP 800-53 Revision 4",
+      "version": "4",
+      "location": "http://csrc.nist.gov/publications/PubsSPs.html"
+    },
+    {
+      "index": "AC-1.2 (iii)",
+      "creator": "NIST",
+      "title": "NIST SP 800-53A",
+      "version": "1",
+      "location": "http://csrc.nist.gov/publications/PubsSPs.html"
+    }
+  ]
+}
