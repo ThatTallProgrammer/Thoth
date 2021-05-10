@@ -12,10 +12,15 @@ import java.util.Set;
 public class Cci
 {
   private @Id String cciId;
+
   private String status;
+
   private @Temporal(TemporalType.DATE) Date publishDate;
+
   private String contributor;
+
   private String type;
+
   private String parameter;
 
   @Column(columnDefinition = "TEXT")

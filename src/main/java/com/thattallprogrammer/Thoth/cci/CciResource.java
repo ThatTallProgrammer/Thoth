@@ -73,7 +73,7 @@ public class CciResource
         })
         .orElseGet(() -> {
           newCci.setCciId(id);
-          return cciRepository.save(newCci);
+          return save(newCci);
         });
   }
 
