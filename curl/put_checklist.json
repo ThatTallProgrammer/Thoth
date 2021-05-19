@@ -1,0 +1,25 @@
+{
+  "dateAccepted": "2001-11-12",
+  "title": "Test Benchmark Post",
+  "description": "Test benchmark using a post request",
+  "notice": "We may have a notice some day",
+  "releaseInfo": "Relase 3.2.1",
+  "version": "7",
+  "profiles": [
+    {
+      "id": "Active_Directory|profile1",
+      "title": "First profile",
+      "description": "First profile description"
+    },
+    {
+      "id": "Active_Directory|profile2",
+      "title": "Second profile",
+      "description": "Second profile description"
+    },
+    {
+      "id": "Active_Directory|profile3",
+      "title": "Third profile",
+      "description": "Third profile description"
+    }
+  ]
+}

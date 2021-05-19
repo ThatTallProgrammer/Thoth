@@ -1,9 +1,8 @@
-package com.thattallprogrammer.Thoth.cci;
+package com.thattallprogrammer.Thoth.data.cci;
 
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.stereotype.Component;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
+import org.springframework.stereotype.Component;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -15,7 +14,7 @@ public class CciModelAssembler implements RepresentationModelAssembler<Cci, Enti
   public EntityModel<Cci> toModel(Cci cci)
   {
     return EntityModel.of(cci,
-        WebMvcLinkBuilder.linkTo(methodOn(CciResource.class).one(cci.getCciId())).withSelfRel(),
+        linkTo(methodOn(CciResource.class).one(cci.getCciId())).withSelfRel(),
         linkTo(methodOn(CciResource.class).all()).withRel("cci")
     );
   }

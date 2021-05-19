@@ -1,4 +1,4 @@
-package com.thattallprogrammer.Thoth.cci;
+package com.thattallprogrammer.Thoth.data.cci;
 
 public class CciNotFoundException extends RuntimeException
 {

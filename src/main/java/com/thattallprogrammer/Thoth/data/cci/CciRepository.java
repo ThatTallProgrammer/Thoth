@@ -1,4 +1,4 @@
-package com.thattallprogrammer.Thoth.cci;
+package com.thattallprogrammer.Thoth.data.cci;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

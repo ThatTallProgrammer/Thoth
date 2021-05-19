@@ -1,4 +1,4 @@
-package com.thattallprogrammer.Thoth.cci;
+package com.thattallprogrammer.Thoth.data.checklist;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class CciNotFoundAdvice
+public class ChecklistNotFoundAdvice
 {
   @ResponseBody
-  @ExceptionHandler(CciNotFoundException.class)
+  @ExceptionHandler(ChecklistNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  String cciNotFoundMessage(CciNotFoundException ex)
+  String checklistNotFound(ChecklistNotFoundException ex)
   {
     return ex.getMessage();
   }

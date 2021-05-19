@@ -1,6 +1,9 @@
-package com.thattallprogrammer.Thoth.cci.reference;
+package com.thattallprogrammer.Thoth.data.cci.reference;
 
-import com.thattallprogrammer.Thoth.cci.Cci;
+import com.thattallprogrammer.Thoth.data.cci.Cci;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -10,6 +13,9 @@ import java.util.Objects;
 import java.util.Set;
 
 @Entity
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
 public class CciReference
 {
   private @Id String index;
@@ -20,19 +26,6 @@ public class CciReference
 
   @ManyToMany(mappedBy = "references")
   Set<Cci> ccis = new HashSet<>();
-
-  public CciReference()
-  {
-  }
-
-  public CciReference(String index, String creator, String title, String version, String location)
-  {
-    this.index = index;
-    this.creator = creator;
-    this.title = title;
-    this.version = version;
-    this.location = location;
-  }
 
   public String getIndex()
   {
@@ -97,17 +90,5 @@ public class CciReference
   public int hashCode()
   {
     return Objects.hash(index, creator, title, version, location);
-  }
-
-  @Override
-  public String toString()
-  {
-    return "CCIReference{" +
-        "index='" + index + '\'' +
-        ", creator='" + creator + '\'' +
-        ", title='" + title + '\'' +
-        ", version='" + version + '\'' +
-        ", location='" + location + '\'' +
-        '}';
   }
 }
